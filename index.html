@@ -139,6 +139,19 @@
         width: 70px;
       }
     }
+    @keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--accent), #fff5c0, var(--accent));
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite;
+}
+    
   </style>
 </head>
 <body>
