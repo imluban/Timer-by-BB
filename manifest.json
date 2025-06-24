@@ -1,5 +1,5 @@
 {
-  "name": "BLVCK BASTION Timer",
+  "name": "Powered by BLVCK BASTION",
   "short_name": "Timer",
   "start_url": "./index.html",
   "display": "standalone",
@@ -8,13 +8,13 @@
   "icons": [
     {
       "src": "icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
