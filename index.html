@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Timer by BB</title>
@@ -14,215 +15,263 @@
       --glass: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.08);
       --shadow: rgba(212, 175, 55, 0.20);
-    }* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    }
 
-body {
-  background: var(--bg);
-  color: var(--primary);
-  font-family: 'Cinzel', serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding: 0 16px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1 {
-  font-size: 1.8em;
-  color: var(--accent);
-  letter-spacing: 1.2px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  z-index: 2;
-  text-align: center;
-}
+    body {
+      background: var(--bg);
+      color: var(--primary);
+      font-family: 'Cinzel', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 16px;
+    }
 
-.timer-box {
-  background: var(--glass);
-  border: 1.5px solid var(--accent);
-  border-radius: 18px;
-  padding: 30px 36px;
-  box-shadow:
-    0 8px 35px var(--shadow),
-    0 0 45px rgba(212,175,55,0.4),
-    0 0 8px rgba(212,175,55,0.6) inset;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  z-index: 2;
-  animation: float 4s ease-in-out infinite alternate;
-  position: relative;
-}
+    h1 {
+      font-size: 1.8em;
+      color: var(--accent);
+      letter-spacing: 1.2px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      z-index: 2;
+      text-align: center;
+    }
 
-.unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100px;
-  min-width: 80px;
-  font-size: 1.3em;
-}
+    .timer-box {
+      background: var(--glass);
+      border: 1.5px solid var(--accent);
+      border-radius: 18px;
+      padding: 30px 36px;
+      box-shadow:
+        0 8px 35px var(--shadow),
+        0 0 45px rgba(212,175,55,0.4),
+        0 0 8px rgba(212,175,55,0.6) inset;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      z-index: 2;
+      animation: float 4s ease-in-out infinite alternate;
+    }
 
-.unit span {
-  font-size: 0.75em;
-  color: #aaa;
-  margin-top: 4px;
-}
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      min-width: 80px;
+      font-size: 1.3em;
+    }
 
-.leverage-tagline {
-  margin-top: 18px;
-  font-size: 0.9em;
-  color: var(--accent);
-  letter-spacing: 1px;
-  text-align: center;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
+    .unit span {
+      font-size: 0.75em;
+      color: #aaa;
+      margin-top: 4px;
+    }
 
-footer {
-  position: absolute;
-  bottom: 80px;
-  font-size: 0.8em;
-  color: #888;
-  letter-spacing: 0.7px;
-  text-align: center;
-  z-index: 2;
-  font-family: 'Segoe UI', sans-serif;
-}
+    .leverage-tagline {
+      margin-top: 18px;
+      font-size: 0.9em;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-align: center;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
 
-footer span {
-  color: var(--accent);
-  font-weight: 600;
-}
+    footer {
+      position: absolute;
+      bottom: 80px;
+      font-size: 0.8em;
+      color: #888;
+      letter-spacing: 0.7px;
+      text-align: center;
+      z-index: 2;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.1;
-  background: var(--accent);
-  filter: blur(30px);
-  animation: rise 20s linear infinite;
-  z-index: 0;
-}
+    footer span {
+      color: var(--accent);
+      font-weight: 600;
+    }
 
-.bubble:nth-child(n) {
-  animation-delay: calc(1s * var(--i));
-}
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      background: var(--accent);
+      filter: blur(30px);
+      animation: rise 20s linear infinite;
+      z-index: 0;
+    }
 
-@keyframes float {
-  from { transform: translateY(10px); }
-  to   { transform: translateY(-10px); }
-}
+    .bubble:nth-child(n) {
+      width: 80px; height: 80px;
+      bottom: -100px;
+    }
 
-@keyframes rise {
-  0%   { transform: translateY(0); opacity: 0.07; }
-  100% { transform: translateY(-120vh); opacity: 0; }
-}
+    .bubble:nth-child(1) { left: 5%; animation-delay: 0s; }
+    .bubble:nth-child(2) { right: 10%; animation-delay: 2s; }
+    .bubble:nth-child(3) { left: 20%; animation-delay: 4s; }
+    .bubble:nth-child(4) { left: 35%; animation-delay: 1s; }
+    .bubble:nth-child(5) { right: 25%; animation-delay: 3s; }
+    .bubble:nth-child(6) { left: 45%; animation-delay: 5s; }
+    .bubble:nth-child(7) { right: 40%; animation-delay: 6s; }
+    .bubble:nth-child(8) { left: 55%; animation-delay: 0.5s; }
+    .bubble:nth-child(9) { right: 15%; animation-delay: 1.5s; }
+    .bubble:nth-child(10) { left: 70%; animation-delay: 2.5s; }
 
-@media (max-width: 500px) {
-  .unit {
-    width: 70px;
-  }
-}
+    @keyframes float {
+      from { transform: translateY(10px); }
+      to   { transform: translateY(-10px); }
+    }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
+    @keyframes rise {
+      0%   { transform: translateY(0); opacity: 0.07; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
 
-.shimmer-text {
-  background: linear-gradient(90deg, var(--accent), #fff5c0, var(--accent));
-  background-size: 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 15s infinite;
-}
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.03); opacity: 0.95; }
-  100% { transform: scale(1); opacity: 1; }
-}
+    .shimmer-text {
+      background: linear-gradient(90deg, var(--accent), #fff5c0, var(--accent));
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 15s infinite;
+    }
 
-.unit div {
-  animation: pulse 2.5s infinite ease-in-out;
-}
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.95; }
+      100% { transform: scale(1); opacity: 1; }
+    }
 
-#settings-btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: transparent;
-  color: var(--accent);
-  font-size: 1.4em;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
+    .unit div {
+      animation: pulse 2.5s infinite ease-in-out;
+    }
 
-#settings-panel {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--glass);
-  border: 1px solid var(--border);
-  padding: 24px 28px 28px;
-  border-radius: 12px;
-  box-shadow: 0 0 40px var(--shadow);
-  backdrop-filter: blur(10px);
-  display: none;
-  z-index: 15;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-}
+    #settings-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 1.4em;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
 
-#close-settings {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: red;
-  border: none;
-  cursor: pointer;
-}
+    #settings-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 24px 28px 28px;
+      border-radius: 12px;
+      box-shadow: 0 0 40px var(--shadow);
+      backdrop-filter: blur(10px);
+      display: none;
+      z-index: 15;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #close-settings {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: yellow;
+      border: none;
+      cursor: pointer;
+    }
+
+    #settings-panel input {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.9em;
+      outline: none;
+      background: #1a1a1a;
+      color: var(--primary);
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    #save-date {
+      padding: 6px 16px;
+      font-size: 0.9em;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
   </style>
 </head>
 <body>
-  <audio id="launch-sound" src="cinematic_startup.mp3" preload="auto"></audio><button id="settings-btn">⚙️</button>
+  <audio id="launch-sound" src="cinematic_startup.mp3" preload="auto"></audio>
 
+  <!-- Settings Button -->
+  <button id="settings-btn">⚙️</button>
+
+  <!-- Settings Panel -->
   <div id="settings-panel">
     <button id="close-settings"></button>
     <h3 style="color: var(--accent); margin-bottom: 14px;">Set Birth Date & Time</h3>
-    <input type="date" id="birth-date" style="margin-bottom: 10px; padding: 5px;" />
-    <input type="time" id="birth-time" style="margin-bottom: 14px; padding: 5px;" />
-    <br>
-    <button id="save-date" style="padding: 6px 12px; background: var(--accent); color: #000; border: none; border-radius: 4px;">Save</button>
-  </div>  <div class="bubble" style="--i:0"></div>
-  <div class="bubble" style="--i:1"></div>
-  <div class="bubble" style="--i:2"></div>
-  <div class="bubble" style="--i:3"></div>
-  <div class="bubble" style="--i:4"></div>  <h1 class="shimmer-text">Time You've Wasted</h1>  <div class="timer-box" id="timer">
+    <input type="date" id="birth-date" />
+    <input type="time" id="birth-time" />
+    <button id="save-date">Save</button>
+  </div>
+
+  <!-- Floating Bubbles -->
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <!-- Header -->
+  <h1 class="shimmer-text">Time You've Wasted</h1>
+
+  <!-- Timer -->
+  <div class="timer-box" id="timer">
     <div class="unit"><div id="days">0</div><span>Days</span></div>
     <div class="unit"><div id="hours">0</div><span>Hours</span></div>
     <div class="unit"><div id="minutes">0</div><span>Minutes</span></div>
     <div class="unit"><div id="seconds">0</div><span>Seconds</span></div>
     <div class="unit"><div id="milliseconds">0</div><span>Milliseconds</span></div>
-  </div>  <p class="leverage-tagline shimmer-text">Time is leverage.</p>  <footer>
+  </div>
+
+  <!-- Tagline -->
+  <p class="leverage-tagline shimmer-text">Time is leverage.</p>
+
+  <!-- Footer -->
+  <footer>
     Powered by <span>BLVCK BASTION</span>
-  </footer>  <script>
+  </footer>
+
+  <script>
     let startDate;
 
     function loadStartDate() {
@@ -254,17 +303,19 @@ footer span {
       document.getElementById("milliseconds").textContent = milliseconds;
     }
 
+    // Load saved date/time
     loadStartDate();
     setInterval(updateTimer, 40);
 
+    // Open/Close settings
     document.getElementById("settings-btn").addEventListener("click", () => {
       document.getElementById("settings-panel").style.display = "block";
     });
-
     document.getElementById("close-settings").addEventListener("click", () => {
       document.getElementById("settings-panel").style.display = "none";
     });
 
+    // Save new birthdate
     document.getElementById("save-date").addEventListener("click", () => {
       const date = document.getElementById("birth-date").value;
       const time = document.getElementById("birth-time").value || "00:00";
@@ -276,15 +327,11 @@ footer span {
       }
     });
 
+    // Sound launch
     window.addEventListener("load", () => {
       const audio = document.getElementById("launch-sound");
       if (audio) audio.play().catch(() => {});
     });
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registered!'))
-        .catch(error => console.error('SW registration failed:', error));
-    }
-  </script></body>
+  </script>
+</body>
 </html>
