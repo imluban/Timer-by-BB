@@ -185,7 +185,7 @@
   transform: translate(-50%, -50%);
   background: var(--glass);
   border: 1px solid var(--border);
-  padding: 24px 28px;
+  padding: 24px 28px 28px;
   border-radius: 12px;
   box-shadow: 0 0 40px var(--shadow);
   backdrop-filter: blur(10px);
@@ -194,14 +194,26 @@
   text-align: center;
 }
 
+#close-settings {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 1em;
+  cursor: pointer;
+}
+
 #settings-panel label {
   display: block;
-  margin-bottom: 12px;
+  margin: 10px 0 6px;
   color: var(--primary);
   font-size: 0.9em;
 }
 
-#settings-panel input[type="date"] {
+#settings-panel input[type="date"],
+#settings-panel input[type="time"] {
   padding: 6px 12px;
   border-radius: 6px;
   border: none;
@@ -209,6 +221,7 @@
   outline: none;
   background: #1a1a1a;
   color: var(--primary);
+  width: 100%;
 }
 
 #save-date {
@@ -220,7 +233,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-    }
+}
 
   </style>
 </head>
@@ -232,8 +245,11 @@
 
 <!-- Settings Panel -->
 <div id="settings-panel">
+  <button id="close-settings">✖</button>
   <label for="birthdate">Set Your Birthdate:</label>
   <input type="date" id="birthdate" />
+  <label for="birthtime" style="margin-top:10px;">Set Time of Birth:</label>
+  <input type="time" id="birthtime" />
   <button id="save-date">Save</button>
 </div>
   
