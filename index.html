@@ -244,16 +244,15 @@
 
   <!-- Settings Button -->
 <button id="settings-btn">⚙️</button>
+  <div id="settings-panel">
+    <button id="close-settings"></button>
+    <h3 style="color: var(--accent); margin-bottom: 14px;">Set Birth Date & Time</h3>
+    <input type="date" id="birth-date" style="margin-bottom: 10px; padding: 5px;" />
+    <input type="time" id="birth-time" style="margin-bottom: 14px; padding: 5px;" />
+    <br>
+    <button onclick="saveBirthDate()" style="padding: 6px 12px; background: var(--accent); color: #000; border: none; border-radius: 4px;">Save</button>
+  </div>
 
-<!-- Settings Panel -->
-<div id="settings-panel">
-  <button id="close-settings">✖</button>
-  <label for="birthdate">Set Your Birthdate:</label>
-  <input type="date" id="birthdate" />
-  <label for="birthtime" style="margin-top:10px;">Set Time of Birth:</label>
-  <input type="time" id="birthtime" />
-  <button id="save-date">Save</button>
-</div>
   
   <!-- Floating Bubbles -->
   <div class="bubble"></div>
