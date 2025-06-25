@@ -165,10 +165,77 @@
 .unit div {
   animation: pulse 2.5s infinite ease-in-out;
 }
+
+    #settings-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1.4em;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#settings-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 0 40px var(--shadow);
+  backdrop-filter: blur(10px);
+  display: none;
+  z-index: 15;
+  text-align: center;
+}
+
+#settings-panel label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-size: 0.9em;
+}
+
+#settings-panel input[type="date"] {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.9em;
+  outline: none;
+  background: #1a1a1a;
+  color: var(--primary);
+}
+
+#save-date {
+  margin-top: 16px;
+  padding: 6px 16px;
+  font-size: 0.9em;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
   <audio id="launch-sound" src="cinematic_startup.mp3" preload="auto"></audio>
+
+  <!-- Settings Button -->
+<button id="settings-btn">⚙️</button>
+
+<!-- Settings Panel -->
+<div id="settings-panel">
+  <label for="birthdate">Set Your Birthdate:</label>
+  <input type="date" id="birthdate" />
+  <button id="save-date">Save</button>
+</div>
   
   <!-- Floating Bubbles -->
   <div class="bubble"></div>
