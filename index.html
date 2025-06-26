@@ -228,21 +228,6 @@
       cursor: pointer;
     }
 
-    h1, .quote, footer, .tagline { text-align: center; color: var(--accent); margin: 10px 0; }
-    .tagline { font-size: 0.9em; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; }
-    .quote { font-style: italic; font-size: 0.85em; opacity: 0.75; min-height: 1em; }
-
-    .tools-box button {
-      margin: 6px;
-      padding: 6px 14px;
-      border: none;
-      border-radius: 6px;
-      background: var(--accent);
-      color: #000;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-    
   </style>
 </head>
 <body>
@@ -278,21 +263,6 @@
     <div class="unit"><div id="milliseconds">0</div><span>Milliseconds</span></div>
   </div>
 
-  <!-- Quote Box -->
-  <div class="quote-box">
-    <div class="quote" id="quote"></div>
-  </div>
-
-  <!-- Tools Box -->
-  <div class="tools-box">
-    <button onclick="generateSnapshot()">📸 Export Snapshot</button>
-    <button onclick="aiReflect()">🧠 AI Reflect</button>
-    <button onclick="addTimer()">➕ Add Named Timer</button>
-  </div>
-
-  <!-- Extra Timers -->
-  <div id="extra-timers"></div>
-  
   <!-- Tagline -->
   <p class="leverage-tagline shimmer-text">Time is leverage.</p>
 
@@ -302,14 +272,6 @@
   </footer>
 
   <script>
-    const quotes = [
-      "Time waits for no one.",
-      "Lost time is never found again.",
-      "You are the architect of your minutes.",
-      "What you do with time, shapes what time does with you.",
-      "Time wasted is potential unfaced."
-    ];
-    
     let startDate;
 
     function loadStartDate() {
@@ -370,44 +332,6 @@
       const audio = document.getElementById("launch-sound");
       if (audio) audio.play().catch(() => {});
     });
-
-    function rotateQuotes() {
-      const quoteBox = document.getElementById("quote");
-      setInterval(() => {
-        const idx = Math.floor(Math.random() * quotes.length);
-        quoteBox.textContent = quotes[idx];
-      }, 5000);
-    }
-
-    function generateSnapshot() {
-      html2canvas(document.body).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "timer_snapshot.png";
-        link.href = canvas.toDataURL();
-        link.click();
-      });
-    }
-
-    function aiReflect() {
-      const messages = [
-        "Each tick is your legacy being written...",
-        "Seconds lost never speak again. Why not make them scream?",
-        "Time’s a mirror. What are you reflecting?",
-        "More hours wasted — or more truth uncovered? Your call."
-      ];
-      alert(messages[Math.floor(Math.random() * messages.length)]);
-    }
-
-    function addTimer() {
-      const name = prompt("Enter timer name:");
-      if (!name) return;
-      const div = document.createElement("div");
-      const now = new Date();
-      div.innerHTML = `<div class='timer-box'><strong>${name}:</strong> <span>${now.toLocaleString()}</span></div>`;
-      document.getElementById("extra-timers").appendChild(div);
-    }
-
-    rotateQuotes();
   </script>
 </body>
 </html>
