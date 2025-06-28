@@ -262,6 +262,8 @@
 
 <!-- Settings Panel with Tabs -->
 <div id="settings-panel">
+  <button id="close-settings"></button>
+
   <div id="settings-tabs">
     <button class="tab-btn active" data-tab="birth">Birth Time</button>
     <button class="tab-btn" data-tab="milestones">Milestones</button>
@@ -269,7 +271,6 @@
 
   <!-- Birth Time Tab -->
   <div class="tab-content" id="tab-birth">
-    <button id="close-settings"></button>
     <h3 style="color: var(--accent); margin-bottom: 14px;">Set Birth Date & Time</h3>
     <input type="date" id="birth-date" />
     <input type="time" id="birth-time" />
@@ -278,7 +279,6 @@
 
   <!-- Milestones Tab -->
   <div class="tab-content" id="tab-milestones" style="display: none;">
-    <button id="close-settings"></button>
     <h3 style="color: var(--accent); margin-bottom: 14px;">Milestone Mode</h3>
     <input type="text" id="milestone-name" placeholder="Milestone (e.g. Billionaire)" />
     <input type="date" id="milestone-date" />
