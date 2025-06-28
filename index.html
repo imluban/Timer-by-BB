@@ -228,6 +228,50 @@
       cursor: pointer;
     }
 
+    .section {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(212,175,55,0.2);
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+    input, button {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background: #d4af37;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .milestone, .legacy {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #444;
+      border-radius: 8px;
+    }
+    .progress {
+      background: #444;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .progress-bar {
+      background: #d4af37;
+      height: 100%;
+    }
+
   </style>
 </head>
 <body>
@@ -270,6 +314,26 @@
   <footer>
     Powered by <span>BLVCK BASTION</span>
   </footer>
+
+  <h2>Milestone Mode</h2>
+  <div class="section">
+    <label for="milestone-name">Milestone Name</label>
+    <input type="text" id="milestone-name">
+    <label for="milestone-date">Date</label>
+    <input type="date" id="milestone-date">
+    <button onclick="addMilestone()">Add Milestone</button>
+    <div id="milestone-list"></div>
+  </div>
+
+  <h2>Legacy Estimator</h2>
+  <div class="section">
+    <label for="legacy-name">Goal</label>
+    <input type="text" id="legacy-name">
+    <label for="legacy-deadline">Deadline</label>
+    <input type="date" id="legacy-deadline">
+    <button onclick="addLegacy()">Add Goal</button>
+    <div id="legacy-list"></div>
+  </div>
 
   <script>
     let startDate;
@@ -332,6 +396,62 @@
       const audio = document.getElementById("launch-sound");
       if (audio) audio.play().catch(() => {});
     });
+
+    let milestones = JSON.parse(localStorage.getItem("milestones") || "[]");
+    let legacies = JSON.parse(localStorage.getItem("legacies") || "[]");
+
+    function addMilestone() {
+      const name = document.getElementById('milestone-name').value;
+      const date = document.getElementById('milestone-date').value;
+      if (name && date) {
+        milestones.push({ name, date });
+        localStorage.setItem("milestones", JSON.stringify(milestones));
+        renderMilestones();
+      }
+    }
+
+    function addLegacy() {
+      const name = document.getElementById('legacy-name').value;
+      const deadline = document.getElementById('legacy-deadline').value;
+      if (name && deadline) {
+        legacies.push({ name, deadline });
+        localStorage.setItem("legacies", JSON.stringify(legacies));
+        renderLegacies();
+      }
+    }
+
+    function renderMilestones() {
+      const container = document.getElementById('milestone-list');
+      container.innerHTML = '';
+      milestones.forEach(m => {
+        const past = Date.now() - new Date(m.date);
+        const days = Math.floor(past / (1000 * 60 * 60 * 24));
+        container.innerHTML += `<div class='milestone'><strong>${m.name}</strong><br>${days} days ago</div>`;
+      });
+    }
+
+    function renderLegacies() {
+      const container = document.getElementById('legacy-list');
+      container.innerHTML = '';
+      legacies.forEach(g => {
+        const now = Date.now();
+        const deadline = new Date(g.deadline).getTime();
+        const start = new Date().getFullYear() - 5; // assume goal set 5 yrs ago
+        const total = deadline - new Date(`${start}-01-01`).getTime();
+        const elapsed = now - new Date(`${start}-01-01`).getTime();
+        const percent = Math.min(100, Math.floor((elapsed / total) * 100));
+        container.innerHTML += `
+          <div class='legacy'>
+            <strong>${g.name}</strong><br>
+            ${percent}% complete
+            <div class='progress'><div class='progress-bar' style='width:${percent}%'></div></div>
+          </div>`;
+      });
+    }
+
+    renderMilestones();
+    renderLegacies();
+    
   </script>
 </body>
 </html>
