@@ -242,14 +242,20 @@
       margin-bottom: 12px;
     }
 
-    #save-date {
-      padding: 6px 16px;
-      font-size: 0.9em;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    .btn-accent {
+  padding: 6px 16px;
+  font-size: 0.9em;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-accent:hover {
+  background: #ffde69;
+  transform: scale(1.03);
     }
 
   </style>
@@ -274,7 +280,7 @@
     <h3 style="color: var(--accent); margin-bottom: 14px;">Set Birth Date & Time</h3>
     <input type="date" id="birth-date" />
     <input type="time" id="birth-time" />
-    <button id="save-date">Save</button>
+    <button id="save-date" class="btn-accent">Save</button>
   </div>
 
   <!-- Milestones Tab -->
@@ -282,15 +288,13 @@
     <h3 style="color: var(--accent); margin-bottom: 14px;">Milestone Mode</h3>
     <input type="text" id="milestone-name" placeholder="Milestone (e.g. Billionaire)" />
     <input type="date" id="milestone-date" />
-    <button id="add-milestone">Add</button>
+    <button id="add-milestone" class="btn-accent">Add</button>
     <ul id="milestone-list" style="margin-top: 16px;"></ul>
   </div>
 </div>
 
   
-
-  <!-- Floating Bubbles -->
-  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+<div class="bubble"></div><div class="bubble"></div>
   <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
   <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
   <div class="bubble"></div>
