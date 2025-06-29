@@ -246,37 +246,17 @@
   padding: 6px 16px;
   font-size: 0.9em;
   background: var(--accent) !important;
-  color: #000 !important;
+  color: #000 !important ;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: 
-    background 0.3s ease,
-    transform 0.2s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-  box-shadow: 0 0 0 transparent;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-accent:hover {
   background: #ffde69 !important;
   transform: scale(1.03);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
-      }
-
-    .delete-btn {
-  margin-left: 10px;
-  background: none;
-  color: #888;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  transition: color 0.3s ease;
-}
-
-.delete-btn:hover {
-  color: var(--accent);
-}
+    }
 
   </style>
 </head>
@@ -285,7 +265,6 @@
 
   <!-- Settings Button -->
 <button id="settings-btn">⚙️</button>
-<button id="milestone-view-btn">📜</button>
 
 <!-- Settings Panel with Tabs -->
 <div id="settings-panel">
@@ -313,56 +292,6 @@
     <ul id="milestone-list" style="margin-top: 16px;"></ul>
   </div>
 </div>
-
-  <!-- Milestones Panel -->
-  <div id="milestone-panel"> with this -->
-<div id="milestone-panel" style="
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--glass);
-  border: 1px solid var(--border);
-  padding: 24px 28px;
-  border-radius: 12px;
-  box-shadow: 0 0 40px var(--shadow);
-  backdrop-filter: blur(10px);
-  display: none;
-  z-index: 20;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  width: 300px;
-  max-height: 60vh;
-  overflow-y: auto;
-">
-  <button id="close-milestone-panel" title="Close Milestones" style="
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    border: none;
-    cursor: pointer;
-  "></button>
-
-  <h3 style="color: var(--accent); margin-bottom: 14px;">Your Milestones</h3>
-  <ul id="milestone-list-view" style="list-style: none; padding: 0;"></ul>
-</div>
-
-<!-- Milestone view button for clarity -->
-<button id="milestone-view-btn" style="
-  position: absolute;
-  top: 18px;
-  right: 50px;
-  background: transparent;
-  color: var(--accent);
-  font-size: 1.4em;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-">📜</button>
 
   
 <div class="bubble"></div><div class="bubble"></div>
@@ -485,7 +414,7 @@ function loadMilestones() {
     li.innerHTML = `
       <strong>${m.name}</strong> — 
       ${diffDays >= 0 ? `${diffDays} days left` : `⚠️ Passed`}
-      <button data-index="${i}" class="delete-btn">✖</button>
+      <button data-index="${i}" style="margin-left:10px; background:none; color:#888; border:none; cursor:pointer;">✖</button>
     `;
     milestoneList.appendChild(li);
   });
@@ -509,35 +438,6 @@ addBtn.addEventListener("click", () => {
   milestoneName.value = "";
   milestoneDate.value = "";
   loadMilestones();
-});
-
-document.getElementById("milestone-view-btn").addEventListener("click", () => {
-  document.getElementById("milestone-panel").style.display = "block";
-  renderMilestoneView(); // This will load your milestones into the panel
-});
-
-function renderMilestoneView() {
-  const saved = JSON.parse(localStorage.getItem("milestones") || "[]");
-  const milestoneListView = document.getElementById("milestone-list-view");
-  milestoneListView.innerHTML = "";
-
-  const now = new Date();
-
-  saved.forEach((m) => {
-    const target = new Date(m.date);
-    const diffDays = Math.floor((target - now) / (1000 * 60 * 60 * 24));
-
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${m.name}</strong><br>
-      <span style="color:#888;">${diffDays >= 0 ? `${diffDays} days left` : `⚠️ Passed`}</span>
-    `;
-    milestoneListView.appendChild(li);
-  });
-                         }
-
-document.getElementById("close-milestone-panel").addEventListener("click", () => {
-  document.getElementById("milestone-panel").style.display = "none";
 });
 
 window.addEventListener("load", loadMilestones);
