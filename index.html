@@ -468,6 +468,35 @@ addBtn.addEventListener("click", () => {
   loadMilestones();
 });
 
+document.getElementById("milestone-view-btn").addEventListener("click", () => {
+  document.getElementById("milestone-panel").style.display = "block";
+  renderMilestoneView(); // This will load your milestones into the panel
+});
+
+function renderMilestoneView() {
+  const saved = JSON.parse(localStorage.getItem("milestones") || "[]");
+  const milestoneListView = document.getElementById("milestone-list-view");
+  milestoneListView.innerHTML = "";
+
+  const now = new Date();
+
+  saved.forEach((m) => {
+    const target = new Date(m.date);
+    const diffDays = Math.floor((target - now) / (1000 * 60 * 60 * 24));
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${m.name}</strong><br>
+      <span style="color:#888;">${diffDays >= 0 ? `${diffDays} days left` : `⚠️ Passed`}</span>
+    `;
+    milestoneListView.appendChild(li);
+  });
+                         }
+
+document.getElementById("close-milestone-panel").addEventListener("click", () => {
+  document.getElementById("milestone-panel").style.display = "none";
+});
+
 window.addEventListener("load", loadMilestones);
     
   </script>
