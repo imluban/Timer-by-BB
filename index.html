@@ -434,7 +434,7 @@ function loadMilestones() {
     li.innerHTML = `
       <strong>${m.name}</strong> — 
       ${diffDays >= 0 ? `${diffDays} days left` : `⚠️ Passed`}
-      <button data-index="${i}" style="margin-left:10px; background:none; color:#888; border:none; cursor:pointer;">✖</button>
+      <button data-index="${i}" class="delete-btn">✖</button>
     `;
     milestoneList.appendChild(li);
   });
