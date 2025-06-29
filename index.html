@@ -315,11 +315,54 @@
 </div>
 
   <!-- Milestones Panel -->
-  <div id="milestone-panel">
-  <button id="close-milestone-panel" title="Close Milestones"></button>
+  <div id="milestone-panel"> with this -->
+<div id="milestone-panel" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 0 40px var(--shadow);
+  backdrop-filter: blur(10px);
+  display: none;
+  z-index: 20;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+">
+  <button id="close-milestone-panel" title="Close Milestones" style="
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    border: none;
+    cursor: pointer;
+  "></button>
+
   <h3 style="color: var(--accent); margin-bottom: 14px;">Your Milestones</h3>
-  <ul id="milestone-list-view"></ul>
-  </div>
+  <ul id="milestone-list-view" style="list-style: none; padding: 0;"></ul>
+</div>
+
+<!-- Milestone view button for clarity -->
+<button id="milestone-view-btn" style="
+  position: absolute;
+  top: 18px;
+  right: 50px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1.4em;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+">📜</button>
 
   
 <div class="bubble"></div><div class="bubble"></div>
